@@ -6,9 +6,11 @@
   "author": "robt1019",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "test": "jasmine-ts **/*.spec.ts"
+  },
   "dependencies": {
-    "express": "^4.16.3",
-    "ts-node": "^7.0.0"
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "@types/express": "^4.11.1",

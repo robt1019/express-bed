@@ -7,7 +7,7 @@ describe('express-bed', () => {
     let testBed: ExpressTestBed;
 
     describe('configureTestingModule', () => {
-        it('should return a ExpressTestBed object with the correct routes if they are passed via config', async (done: any) => {
+        it('should return a ExpressTestBed object with the correct routes if they are passed via config', (done: any) => {
 
             class TestRoute implements BaseRoute {
                 public create(app: Express) {
@@ -20,14 +20,14 @@ describe('express-bed', () => {
                 }
             }
 
-            testBed = await ExpressBed.configureTestingModule(
+            testBed = ExpressBed.configureTestingModule(
                 {
                     routes: [TestRoute],
                 },
             );
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .get('/user/validPath/')
                     .expect(200).then(() => done());
             } catch (error) {
@@ -35,7 +35,7 @@ describe('express-bed', () => {
             }
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .get('/user/invalidPath/')
                     .expect(404).then(() => done());
             } catch (error) {
@@ -44,7 +44,7 @@ describe('express-bed', () => {
 
         });
 
-        it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', async (done: any) => {
+        it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', (done: any) => {
 
             class TestInjectable {
                 public doSomething() {
@@ -67,7 +67,7 @@ describe('express-bed', () => {
                 }
             }
 
-            testBed = await ExpressBed.configureTestingModule(
+            testBed = ExpressBed.configureTestingModule(
                 {
                     routes: [TestRoute],
                     injectables: [TestInjectable]
@@ -75,7 +75,7 @@ describe('express-bed', () => {
             );
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .get('/user/validPath/')
                     .expect(200).then(() => done());
             } catch (error) {
@@ -86,7 +86,7 @@ describe('express-bed', () => {
 
         });
 
-        it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', async (done: any) => {
+        it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', (done: any) => {
 
             class TestInjectable {
                 public doSomething() {
@@ -109,7 +109,7 @@ describe('express-bed', () => {
                 }
             }
 
-            testBed = await ExpressBed.configureTestingModule(
+            testBed = ExpressBed.configureTestingModule(
                 {
                     routes: [TestRoute],
                     injectables: [TestInjectable]
@@ -117,7 +117,7 @@ describe('express-bed', () => {
             );
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .get('/user/validPath/')
                     .expect(200).then(() => done());
             } catch (error) {
@@ -128,7 +128,7 @@ describe('express-bed', () => {
 
         });
 
-        it('should return a ExpressTestBed object with the correct routes if multiple routes provided', async (done: any) => {
+        it('should return a ExpressTestBed object with the correct routes if multiple routes provided', (done: any) => {
 
 
             class TestRoute implements BaseRoute {
@@ -155,14 +155,14 @@ describe('express-bed', () => {
                 }
             }
 
-            testBed = await ExpressBed.configureTestingModule(
+            testBed = ExpressBed.configureTestingModule(
                 {
                     routes: [TestRoute, TestRoute2],
                 },
             );
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .get('/user/validPath/')
                     .expect(200).then(() => done());
             } catch (error) {
@@ -170,7 +170,7 @@ describe('express-bed', () => {
             }
 
             try {
-                await supertest(testBed.app)
+                supertest(testBed.app)
                     .post('/user/validPath2/')
                     .expect(200).then(() => done());
             } catch (error) {
