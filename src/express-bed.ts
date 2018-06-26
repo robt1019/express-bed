@@ -1,5 +1,6 @@
 import {ExpressBedUtils} from './express-bed-utils';
-import express, {Router} from 'express';
+import {Router} from 'express';
+import * as express from 'express';
 
 export interface ExpressTestBed {
     app: express.Application;

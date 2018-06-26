@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jasmine-ts **/*.spec.ts"
+    "test": "jasmine-ts **/*.spec.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "express": "^4.16.3"
