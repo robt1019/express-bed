@@ -4,6 +4,12 @@
   "description": "testbed for express routes enabling mocking of dependencies",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/express-bed.js",
+    "dist/express-bed.d.ts",
+    "dist/express-bed-utils.js",
+    "dist/express-bed-utils.d.ts"
+  ],
   "author": "robt1019",
   "license": "MIT",
   "private": false,
