@@ -1,0 +1,1 @@
+export { ExpressBed } from './express-bed';

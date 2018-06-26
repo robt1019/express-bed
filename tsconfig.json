@@ -3,15 +3,18 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "es2015",
+      "es2017",
+      "es7",
+      "es6",
       "dom"
     ],
-    "sourceMap": true,
+    "declaration": true,
     "strict": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true
   },
   "include": [
-    "index.ts",
+    "src/index.ts",
     "src/**/*.ts"
   ],
   "exclude": [

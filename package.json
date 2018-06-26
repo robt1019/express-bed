@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "testbed for express routes enabling mocking of dependencies",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "robt1019",
   "license": "MIT",
   "private": false,
