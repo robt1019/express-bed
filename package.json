@@ -2,7 +2,7 @@
   "name": "express-bed",
   "version": "1.0.0",
   "description": "testbed for express routes enabling mocking of dependencies",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "robt1019",
   "license": "MIT",
   "private": false,
