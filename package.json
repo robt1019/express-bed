@@ -1,6 +1,6 @@
 {
   "name": "express-bed",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "testbed for express routes enabling mocking of dependencies",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
