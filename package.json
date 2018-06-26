@@ -1,6 +1,6 @@
 {
   "name": "express-bed",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "testbed for express routes enabling mocking of dependencies",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,8 @@
     "dist/express-bed.js",
     "dist/express-bed.d.ts",
     "dist/express-bed-utils.js",
-    "dist/express-bed-utils.d.ts"
+    "dist/express-bed-utils.d.ts",
+    "dist/index.d.ts"
   ],
   "author": "robt1019",
   "license": "MIT",
