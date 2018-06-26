@@ -4,6 +4,7 @@
   "description": "testbed for express routes enabling mocking of dependencies",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": "https://github.com/robt1019/express-bed",
   "files": [
     "dist/express-bed.js",
     "dist/express-bed.d.ts",
