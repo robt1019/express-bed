@@ -44,7 +44,11 @@ export class ExpressBed {
         return {
             app,
             get(token: any): any {
-                return instantiatedInjectables[token.constructor.name];
+                return instantiatedInjectables
+                    .find((injectable: any) => {
+                        return token.toString()
+                            .includes(`function ${injectable.constructor.name}(`);
+                    });
             },
         };
     }

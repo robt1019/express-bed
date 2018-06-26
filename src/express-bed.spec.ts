@@ -44,17 +44,35 @@ describe('express-bed', () => {
 
         });
 
-        it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', (done: any) => {
+        fit('should return a ExpressTestBed object with the correct routes and injectables, as well as any injectable dependencies if they are passed via config', (done: any) => {
+
+            class Dependency {
+                public doDepStuff(): string {
+                    return 'blah';
+                }
+            }
 
             class TestInjectable {
+
+                constructor(private dep: Dependency){}
+
                 public doSomething() {
+                    this.dep.doDepStuff();
+                }
+            }
+
+            class TestInjectable2 {
+
+                public doSomethingElse() {
+                    console.log('blah');
                 }
             }
 
             class TestRoute implements BaseRoute {
 
-                constructor(private testInjectable: TestInjectable) {
+                constructor(private testInjectable: TestInjectable, private testInjectable2: TestInjectable2) {
                     this.testInjectable.doSomething();
+                    this.testInjectable2.doSomethingElse();
                 }
 
                 public create(app: Express) {
@@ -70,7 +88,13 @@ describe('express-bed', () => {
             testBed = ExpressBed.configureTestingModule(
                 {
                     routes: [TestRoute],
-                    injectables: [TestInjectable]
+                    injectables: [
+                        {
+                            inject: TestInjectable,
+                            injectables: [Dependency]
+                        },
+                        TestInjectable2
+                    ]
                 },
             );
 
@@ -83,14 +107,14 @@ describe('express-bed', () => {
             }
 
             expect(testBed.get(TestInjectable) instanceof TestInjectable).toBe(true);
+            expect(testBed.get(TestInjectable2) instanceof TestInjectable2).toBe(true);
 
         });
 
         it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', (done: any) => {
 
             class TestInjectable {
-                public doSomething() {
-                }
+                public doSomething() {}
             }
 
             class TestRoute implements BaseRoute {

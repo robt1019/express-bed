@@ -4,21 +4,7 @@ export class ExpressBedUtils {
         if (!injectables) {
             return [];
         }
-
-        const injectablesToReturn: any = {};
-        const resolvedInjectables: any = this.resolveInjectables(injectables);
-        injectables.forEach((injectable: any, key: any) => {
-            const mockInjectable: any = injectable.inject;
-            if (mockInjectable) {
-                injectablesToReturn[mockInjectable.constructor.name] =
-                    resolvedInjectables[key];
-            } else {
-                injectablesToReturn[injectable.constructor.name] =
-                    resolvedInjectables[key];
-            }
-        });
-
-        return injectablesToReturn;
+        return this.resolveInjectables(injectables);
     }
 
     public static instantiateRoutesAndInjectables(testConfig: {
@@ -26,26 +12,12 @@ export class ExpressBedUtils {
         injectables?: any[];
     }): { instantiatedRoutes: any[]; instantiatedInjectables: any[] } {
         const routes: any[] = [];
-        let injectablesToReturn: any = {};
+        let injectablesToReturn: any[] = []
 
         if (testConfig.routes) {
             testConfig.routes.forEach((route: any) => {
                 injectablesToReturn = this.resolveInjectables(testConfig.injectables);
-
-                if (testConfig.injectables) {
-                    testConfig.injectables.forEach((injectable: any, key: number) => {
-                        const isMockProvided = !!injectable.inject;
-                        injectablesToReturn[
-                            isMockProvided
-                                ? injectable.inject.constructor.name
-                                : injectable.constructor.name
-                            ] =
-                            injectablesToReturn[key];
-                    });
-                }
-
                 routes.push(new route(...injectablesToReturn));
-
             });
         }
 
@@ -55,7 +27,8 @@ export class ExpressBedUtils {
         };
     }
 
-    private static resolveInjectables(injectables?: any[]) {
+    private static resolveInjectables(injectables?: any[]): any[] {
+
         const constructorArgs: any[] = [];
 
         if (injectables) {
@@ -65,7 +38,13 @@ export class ExpressBedUtils {
                 if (injectable.useValue) {
                     injectableArg = injectable.useValue;
                 } else {
-                    injectableArg = new injectable();
+                    if (injectable.injectables){
+                        injectableArg =
+                            new injectable.inject(...(this.resolveInjectables(injectable.injectables)));
+                    }
+                    else {
+                        injectableArg = new injectable();
+                    }
                 }
 
                 constructorArgs.push(injectableArg);
