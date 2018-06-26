@@ -1,1 +1,1 @@
-export { ExpressBed } from './express-bed';
+export { ExpressBed, BaseRoute, ExpressTestBed } from './express-bed';
