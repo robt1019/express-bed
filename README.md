@@ -17,7 +17,7 @@ To import the package:
 ```typescript
 import { BaseRoute, ExpressBed, ExpressTestBed } from 'express-bed';
 
-ExpressBed.configureTestingModule({
+const expressBed = ExpressBed.configureTestingModule({
   routes: [
     //routes
   ],
@@ -38,7 +38,8 @@ describe('express-bed', () => {
   let testBed: ExpressTestBed;
 
   describe('configureTestingModule', () => {
-    it('should return a ExpressTestBed object with the correct routes if they are passed via config', (done: any) => {
+    it('should return a ExpressTestBed object with the correct routes ' +
+    'if they are passed via config', (done: any) => {
       class TestRoute implements BaseRoute {
         public create(app: Express) {
           app.get('/user/validPath/', (req: Request, res: Response) => {
@@ -70,7 +71,8 @@ describe('express-bed', () => {
       }
     });
 
-    fit('should return a ExpressTestBed object with the correct routes and injectables, as well as any injectable dependencies if they are passed via config', (done: any) => {
+    it('should return a ExpressTestBed object with the correct routes and injectables, ' + 
+    'as well as any injectable dependencies if they are passed via config', (done: any) => {
       class Dependency {
         public doDepStuff(): string {
           return 'blah';
@@ -133,7 +135,8 @@ describe('express-bed', () => {
       );
     });
 
-    it('should return a ExpressTestBed object with the correct routes and injectables if they are passed via config', (done: any) => {
+    it('should return a ExpressTestBed object with the correct routes and ' + 
+    'injectables if they are passed via config', (done: any) => {
       class TestInjectable {
         public doSomething() {}
       }
@@ -167,7 +170,8 @@ describe('express-bed', () => {
       expect(testBed.get(TestInjectable) instanceof TestInjectable).toBe(true);
     });
 
-    it('should return a ExpressTestBed object with the correct routes if multiple routes provided', (done: any) => {
+    it('should return a ExpressTestBed object with the correct routes if ' + 
+    'multiple routes provided', (done: any) => {
       class TestRoute implements BaseRoute {
         public create(app: Express) {
           app.get('/user/validPath/', (req: Request, res: Response) => {
