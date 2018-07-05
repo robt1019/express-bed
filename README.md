@@ -2,9 +2,11 @@
 
 Angular style TestBed for Express apps.
 
-This is a minimal implementation of a TestBed for typescript Express routes, in the style of Angular.
+This is a minimal implementation of a TestBe for typescript Express routes, in the style of Angular.
 
-It relies on each of the routes being classes, with a public create method, which is passed an express app and calls app.get etc. as shown in the usage examples.
+It allows for easy instantiation of routes for testing, along with convenience methods for passing in mocks and stubs, as well as getting easy access to injected code for spying in tests.
+
+It relies on each of the routes being classes, with a public create method, which is passed an express app and calls `app.get` etc. as shown in the usage examples.
 
 # Installation
 
