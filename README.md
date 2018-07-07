@@ -19,7 +19,7 @@ To import the package:
 ```typescript
 import { BaseRoute, ExpressBed, ExpressTestBed } from 'express-bed';
 
-const expressBed = ExpressBed.configureTestingModule({
+const testBed = ExpressBed.configureTestingModule({
   routes: [
     //routes
   ],
